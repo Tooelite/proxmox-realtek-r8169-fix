@@ -1,0 +1,12 @@
+[Unit]
+Description=Disable NIC offloads for %I (Realtek r8169 workaround)
+After=network.target
+ConditionPathExists=/sys/class/net/%I
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/sbin/realtek-offloads.sh %I
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target
