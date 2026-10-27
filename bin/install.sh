@@ -20,7 +20,7 @@ USAGE
 log() { printf "\033[1m[%s]\033[0m %s\n" "$(date +%F\ %T)" "$*"; }
 err() { printf "\033[31mERROR:\033[0m %s\n" "$*" 1>&2; }
 need_root() { [[ ${EUID:-$(id -u)} -eq 0 ]] || { err "Run as root"; exit 1; }; }
-cmd() { local c=("$@"); if [[ ${DRY_RUN:-0} -eq 1 ]] == 1; then echo "+ ${c[*]}"; else "${c[@]}"; fi }
+cmd() { local c=("$@"); if [[ ${DRY_RUN:-0} -eq 1 ]]; then echo "+ ${c[*]}"; else "${c[@]}"; fi }
 
 IFACE=""
 WANT_GRUB=auto
